@@ -1,0 +1,75 @@
+index > 0{
+                                if playedPile[index].value == 11{
+                                    index -= 1
+                                }
+                                else {
+                                    break
+                                }
+                            }
+                            
+                            if playedPile[index].value == 7 && card.value <= 7{         // valid card played on a 7
+                                
+                                let i = playerHandPile.index(of: card)
+                                playerHandPile.remove(at: i!)
+                                card.removeFromParent()
+                                playedPile.append(card)
+                                drawCard (turn: "player")
+                                playComputerTurn()
+                            }
+                            else if playedPile[index].value == 7 && card.value > 7{     // invalid card played on a 7
+                                print("Must play a card lower than 7")
+                                //must play card below 7
+                            }
+                            else if card.value >= playedPile[index].value{
+                                
+                                let i = playerHandPile.index(of: card)
+                                playerHandPile.remove(at: i!)
+                                card.removeFromParent()
+                                playedPile.append(card)
+                                drawCard (turn: "player")
+                                playComputerTurn()
+                                print ("player played bad card after 7")
+                            }
+                            else{
+                                addChild(label)
+                                label.run(SKAction.sequence([
+                                    SKAction.fadeIn(withDuration: 0.5),
+                                    SKAction.wait(forDuration: 2),
+                                    SKAction.fadeOut(withDuration: 0.5),
+                                    SKAction.removeFromParent()
+                                    ]))
+                                
+                                addChild(label2)
+                                label2.run(SKAction.sequence([
+                                    SKAction.fadeIn(withDuration: 0.5),
+                                    SKAction.wait(forDuration: 2),
+                                    SKAction.fadeOut(withDuration: 0.5),
+                                    SKAction.removeFromParent()
+                                    ]))
+                            }
+                            break
+                        }
+                            
+                        else if playedPile.last?.value == 7 {
+                            if card.value <= 7{                         // valid card is played on a 7
+                                moveFromHandToPile(card: card, turn: "player")
+                                //let i = playerHandPile.index(of: card)
+                                //playerHandPile.remove(at: i!)
+                                card.removeFromParent()
+                                //playedPile.append(card)
+                                drawCard (turn: "player")
+                                playComputerTurn()
+                            }
+                            else{                                       // invalid card is played on a 7
+                                let i = playerHandPile.index(of: card)
+                                playerHandPile.remove(at: i!)
+                                card.removeFromParent()
+                                playedPile.append(card)
+                                playerHandPile.append(contentsOf: playedPile)
+                                playedPile.removeAll()
+                                playComputerTurn()
+                                break
+                                //must play card below 7
+                            }
+                            break
+                       

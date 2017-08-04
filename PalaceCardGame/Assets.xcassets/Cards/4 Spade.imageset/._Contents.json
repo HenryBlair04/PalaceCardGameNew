@@ -1,0 +1,83 @@
+SKAction.fadeIn(withDuration: 0.5),
+                                SKAction.wait(forDuration: 2),
+                                SKAction.fadeOut(withDuration: 0.5),
+                                SKAction.removeFromParent()
+                                ]))
+                            //print ("10 played and burnt")
+                            drawCard(turn: "player")
+                            playComputerTurn()
+                            break
+                        }
+                        else if card.value == 2{            // 2 is played
+                            let i = playerHandPile.index(of: card)
+                            playerHandPile.remove(at: i!)
+                            card.removeFromParent()
+                            playedPile.append(card)
+                            
+                            addChild(label2Magic)
+                            label2Magic.run(SKAction.sequence([
+                                SKAction.fadeIn(withDuration: 0.5),
+                                SKAction.wait(forDuration: 2),
+                                SKAction.fadeOut(withDuration: 0.5),
+                                SKAction.removeFromParent()
+                                ]))
+                            //print ("2 played")
+                            drawCard (turn: "player")
+                            playComputerTurn()
+                            break
+                        }
+                        
+                        else if card.value == 7 {           // seven is played
+                            
+                            let i = playerHandPile.index(of: card)
+                            playerHandPile.remove(at: i!)
+                            card.removeFromParent()
+                            playedPile.append(card)
+                            //print("7 played")
+                            drawCard (turn: "player")
+                            playComputerTurn()
+
+                            break
+                        }
+                            
+                        else if card.value == 11 {          // jack is played
+                            
+                            let i = playerHandPile.index(of: card)
+                            playerHandPile.remove(at: i!)
+                            card.removeFromParent()
+                            playedPile.append(card)
+                            //print("jack played")
+                            drawCard (turn: "player")
+                            playComputerTurn()
+                            break
+                        }
+                            
+                        else if card.value == 1 {           // joker is played
+                            
+                            let i = playerHandPile.index(of: card)
+                            playerHandPile.remove(at: i!)
+                            card.removeFromParent()
+                            playedPile.append(card)
+                            
+                            computerHandPile.append(contentsOf: playedPile)
+                            playedPile = []
+                            //print("joker played")
+                            drawCard (turn: "player")
+                            playComputerTurn()
+                            break
+                        }
+                            
+                        else if playedPile.count == 1 && playedPile.last?.value == 11{  // jack is played
+                            
+                            let i = playerHandPile.index(of: card)
+                            playerHandPile.remove(at: i!)
+                            card.removeFromParent()
+                            playedPile.append(card)
+                            drawCard (turn: "player")
+                            playComputerTurn()
+                            break
+                        }
+                            
+                        else if playedPile.count > 1 && playedPile.last?.value == 11{   // jack is played
+                            var index = playedPile.count-2
+                            while 

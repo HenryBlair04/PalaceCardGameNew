@@ -1,0 +1,94 @@
+}//player up 1
+        let computerEndUp1 = self.childNode(withName: "ComputerEndUp1") as! SKSpriteNode
+        if let cp1Value = computerPile4.last?.value, let cp1Suit = computerPile4.last?.suit {
+            computerEndUp1.texture = SKTexture (imageNamed: "\(cp1Value) \(cp1Suit)")
+        }//computer up 1
+        
+        let playerUp2 = self.childNode(withName: "PlayerUp2") as! SKSpriteNode
+        if let pp2Value = playerPile5.last?.value, let pp2Suit = playerPile5.last?.suit {
+            playerUp2.texture = SKTexture (imageNamed: "\(pp2Value) \(pp2Suit)")
+        }//player up 2
+        
+        let computerEndUp2 = self.childNode(withName: "ComputerEndUp2") as! SKSpriteNode
+        if let cp2Value = computerPile5.last?.value, let cp2Suit = computerPile5.last?.suit {
+            computerEndUp2.texture = SKTexture (imageNamed: "\(cp2Value) \(cp2Suit)")
+        }//computer up 2
+        
+        let playerUp3 = self.childNode(withName: "PlayerUp3") as! SKSpriteNode
+        if let pp3Value = playerPile6.last?.value, let pp3Suit = playerPile6.last?.suit {
+            playerUp3.texture = SKTexture (imageNamed: "\(pp3Value) \(pp3Suit)")
+        }//player up 3
+        
+        let computerEndUp3 = self.childNode(withName: "ComputerEndUp3") as! SKSpriteNode
+        if let cp3Value = computerPile6.last?.value, let cp3Suit = computerPile6.last?.suit {
+            computerEndUp3.texture = SKTexture (imageNamed: "\(cp3Value) \(cp3Suit)")
+        } //computer up 3
+        
+        let drawPile = self.childNode(withName: "DrawPile") as! SKSpriteNode
+        drawPile.texture = SKTexture (imageNamed: "1 card")
+        
+        var offsetX : CGFloat = 0
+        var offsetY : CGFloat = 0
+        for card in playerHandPile {
+            card.position = CGPoint (x: 55 + offsetX, y: -size.height/2 + 20 + offsetY)
+            card.zPosition = masterZPosition
+            masterZPosition += 1
+            card.size = CGSize (width: 110, height: 150)
+            addChild(card)
+            offsetX += 110
+            if offsetX >= size.width{
+                offsetX = 0
+                offsetY = 150
+            }
+        }
+        offsetX = size.width
+        for card in computerHandPile {
+            card.position = CGPoint (x: offsetX - 55, y: size.height/2)
+           // card.texture = SKTexture (imageNamed: "1 card")
+            card.zPosition = masterZPosition
+            card.size = CGSize (width: 110, height: 150)
+            addChild(card)
+            offsetX -= 110
+            if offsetX >= size.width{
+                offsetX = 0
+                offsetY = 150
+            }
+        }
+    }
+    func drawCard (turn: String ) {
+        if turn == "player" {
+            if playerHandPile.count > 3 {
+                
+            }
+            if playerHandPile.count <= 3 {
+                if drawPile.count > 0 {                                 //if the draw pile still has cards
+                    let card = drawPile.last
+                    card?.zPosition += 1                                //give a card
+                    let i = drawPile.index(of: card!)
+                    drawPile.remove(at: i!)
+                    playerHandPile.append(card!)
+                }
+                else { print ("no cards left in deck") }
+            }
+        }
+        else if turn == "computer" {
+            if computerHandPile.count > 3 {
+                
+            }
+            if computerHandPile.count <= 3 {
+                if drawPile.count > 0 {                                 //if the draw pile still has cards
+                    let card = drawPile.last
+                    card?.zPosition += 1                                //give a card
+                    let i = drawPile.index(of: card!)
+                    drawPile.remove(at: i!)
+                    computerHandPile.append(card!)
+                    //card?.texture = SKTexture(imageNamed: "1 card")
+                }
+                else { print ("no cards left in deck") }
+            }
+            print ("\(computerHandPile.count)")
+        }
+    }
+    
+    func playComputerTurn () {
+      

@@ -1,0 +1,9 @@
+index > 0{
+                                if playedPile[index].value == 11{
+                                    index -= 1
+                                }
+                                else {
+                                    break
+                                }
+                            }
+ 

@@ -1,0 +1,10 @@
+  updateCardUI()
+        state = GameState.ComputerTurn
+        run(SKAction.sequence([SKAction.wait(forDuration: 1.5), SKAction.run (computerTurn)]), completion:{
+            self.state = GameState.PlayerTurn
+            self.updateCardUI()
+        })
+    }
+    
+    func computerTurn(){
+        state =
