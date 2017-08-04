@@ -1041,10 +1041,6 @@ class GameScene: SKScene {
         
         return selectedCard
     }
-    
-    
-    
-    
        /*
         if selectedCard.value == 1 {
             print("joker has been plaed by computer")
@@ -1089,4 +1085,5 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
+
 }
